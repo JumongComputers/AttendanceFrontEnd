@@ -14,6 +14,7 @@ export interface SignupType{
     state: string;
     country: string;
   },
+  gender: string;
   telephone: string;
   role: "parent" | "pupils" | "staffs";
   email: string;
@@ -28,3 +29,8 @@ export interface AuthState {
     loading: "idle" | "pending" | "succeeded" | "failed";
     error: string | null;
   }
+
+export interface HomeProps {
+  openModal: () => void;
+  closeModal: () => void;
+}

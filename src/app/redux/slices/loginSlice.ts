@@ -1,16 +1,20 @@
+// import { signUp } from './loginSlice';
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import loginService from "../services/loginServices";
-import { SigninType } from "@/app/utils/types";
+import { SigninType, SignupType } from "@/app/utils/types";
 import { toast } from "react-toastify";
+import { stat } from "fs";
 
 
 export interface AuthState {
+    userSign: SignupType | null;
     user: SigninType | null;
     loading: "idle" | "pending" | "succeeded" | "failed";
     error: string | null;
   }
   
   const initialState: AuthState = {
+    userSign: null,
     user: null,
     loading: "idle",
     error: null,
@@ -31,6 +35,18 @@ export const signIn = createAsyncThunk("auth/signIn", async (loginData: SigninTy
       throw error;
     }
   });
+
+export const signUp = createAsyncThunk("auth/signUp", async (signUpData: SignupType, thunkAPI) => {
+  try {
+    console.log("Signing up with data:", signUpData);
+    const response = await loginService.signup(signUpData);
+    return response;
+    
+  } catch (error) {
+    console.error("Error signing up:", error);
+    throw error;
+  }
+})
   
   export const loginSlice = createSlice({
     name: "auth",
@@ -50,7 +66,20 @@ export const signIn = createAsyncThunk("auth/signIn", async (loginData: SigninTy
           state.loading = "failed";
           toast.error("login failed");
           state.error = action.error.message || null;
-        });
+        })
+        .addCase(signUp.pending, (state) => {
+          state.loading = "pending";
+        })
+        .addCase(signUp.fulfilled, (state, action) => {
+          state.loading = "succeeded";
+          state.userSign = action.payload;
+          toast.done("signup successful");
+        })
+        .addCase(signUp.rejected, (state, action) => {
+          state.loading = "failed";
+          toast.error("signup failed");
+          state.error = action.error.message || null;
+        })
     },
   });
   

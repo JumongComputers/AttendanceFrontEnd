@@ -57,15 +57,15 @@ return(
             }}
             >
                 <Form>
-                <div id="container" onClick={handleClose} className="fixed inset-0 flex items-center bg-black bg-opacity-100 justify-center z-20">
-              <div className="bg-white w-full max-w-4xl rounded-md shadow-lg overflow-y-auto">
+                <div id="container" onClick={handleClose} className="absolute flex inset-0  items-center w-full bg-black bg-opacity-0  z-20">
+              <div className="bg-white  w-5/6 mx-auto rounded-md shadow-lg overflow-y-auto ">
                 <div className="flex justify-end pt-4 pr-4">
                   <button onClick={() => onRequestClose()}>
                     <X />
                   </button>
                 </div>
-                <div className="overflow-y-auto max-h-[520px]">
-                  <div className="flex flex-col px-6 items-start w-full">
+                <div className=" ">
+                  <div className="flex flex-col px-2 items-start w-full">
                     <div className="flex flex-col items-start lg:place-items-start w-full md:py-8 ">
                       <span className="text-black text-4xl font-bold mx-auto ">Login Page</span>
                       <div className="w-full grid gap-4 lg:gap-6 mb-6 mt-12 ">
@@ -76,9 +76,9 @@ return(
                           <Field
                             name="email"
                             type="text"
-                            className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
+                            className="py-2 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
                               placeholder-gray-200::placeholder placeholder-opacity-75
-                              border-2 focus:border-black text-xl"
+                              border-2 focus:border-black text-l"
                             placeholder="Enter your Email"
                           />
                           <ErrorMessage name="email" component="div" className="text-red-600" />
@@ -90,9 +90,9 @@ return(
                           <Field
                             name="password"
                             type="text"
-                            className="py-4 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
+                            className="py-2 px-6 rounded-md bg-[#F2F7FF] focus:outline-none w-full
                               placeholder-gray-200::placeholder placeholder-opacity-75
-                              border-2 focus:border-black text-xl"
+                              border-2 focus:border-black text-l"
                             placeholder="Enter your Password"
                           />
                           <ErrorMessage name="password" component="div" className="text-red-600" />
@@ -101,12 +101,12 @@ return(
                         <div className="flex justify-between items-center pt-8">
                           <button
                             onClick={() => onRequestClose()}
-                            className="bg-transparent border border-black  py-2 text-black rounded-md
-                              font-bold text-2xl focus:outline-none px-4 md:px-8 lg:px-10"
+                            className="bg-transparent border border-black  py-1 text-black rounded-md
+                              font-bold text-2xl focus:outline-none px-2 md:px-8 lg:px-10"
                           >
                             Cancel
                           </button>
-                          <button type="submit" className="bg-black border border-transparent py-2 text-white rounded-md font-bold text-2xl px-4 focus:outline-none md:px-8 lg:px-10">
+                          <button type="submit" className="bg-black border border-transparent py-1 text-white rounded-md font-bold text-2xl px-2 focus:outline-none md:px-8 lg:px-10">
                             {isLoading === "pending" ? "Loading..." : "Login"}
                           </button>
                         </div>
